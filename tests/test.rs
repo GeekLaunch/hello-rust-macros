@@ -1,17 +1,21 @@
 use hello_rust_macros::Display;
 
-fn lowercase(s: &str) -> String {
-    s.to_lowercase()
-}
-
 #[derive(Display)]
+// No #[display(...)] item necessary
 enum MyStruct {
     One,
     Two,
     Three,
 }
 
+// Transformation function
+fn lowercase(s: &str) -> String {
+    s.to_lowercase()
+}
+
 #[derive(Display)]
+// Since the transform field is optional, the #[display(...)] item is
+// completely ignored in the MyStruct declaration.
 #[display(transform = "lowercase")]
 enum MyLowercasedStruct {
     One,
